@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NexTeen Fashion - Official Website</title>
+    <meta name="description" content="NexTeen Fashion - Koleksi busana modern dan berkelanjutan untuk generasi masa depan." />
+    <style>
+      :root {
+        --bg-dark-green: #084c2e;
+        --bg-darker-green: #063822;
+        --accent-green: #22c55e;
+        --text-primary: #ffffff;
+        --text-secondary: #d1fae5;
+        --muted: #a7f3d0;
+        --card: #0b5e39;
+        --card-hover: #0e7247;
+        --border: #10b98133;
+        --shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        --accent-2: #34d399;
+        --accent-3: #a7f3d0;
+        --chip: rgba(34, 197, 94, 0.18);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+          Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+        color: var(--text-primary);
+        background: radial-gradient(1200px 800px at 20% 0%, #0a5a36 0%, transparent 60%),
+          radial-gradient(1000px 700px at 100% 20%, #0a5a36 0%, transparent 50%),
+          var(--bg-dark-green);
+      }
+
+      .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+      header {
+        position: sticky; top: 0; z-index: 100;
+        backdrop-filter: saturate(1.2) blur(8px);
+        background: linear-gradient(180deg, rgba(8, 76, 46, 0.9), rgba(8, 76, 46, 0.7));
+        border-bottom: 1px solid var(--border);
+      }
+      .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.4px; }
+      .brand-mark { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35); font-size: 18px; color: #04301d; font-weight: 900; }
+      nav ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; }
+      nav a { color: var(--text-primary); text-decoration: none; padding: 10px 14px; border-radius: 10px; transition: background 200ms ease, color 200ms ease, transform 100ms ease; white-space: nowrap; }
+      nav a:hover { background: rgba(34, 197, 94, 0.12); }
+      nav a:focus-visible { outline: 2px solid var(--accent-green); outline-offset: 2px; }
+
+      section { padding: 64px 0; }
+      section h2 { margin: 0 0 10px; font-size: 34px; }
+      section p.lead { margin: 0 0 24px; color: var(--text-secondary); }
+
+      .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; padding: 56px 0 24px; }
+      .hero h1 { font-size: 48px; line-height: 1.1; margin: 0 0 14px; }
+      .hero p { margin: 0 0 22px; color: var(--text-secondary); font-size: 18px; }
+      .cta { display: inline-flex; align-items: center; gap: 10px; background: var(--accent-green); color: #06311f; font-weight: 700; border: 0; border-radius: 12px; padding: 12px 18px; box-shadow: var(--shadow); cursor: pointer; transition: transform 120ms ease, box-shadow 200ms ease, filter 120ms ease; text-decoration: none; }
+      .cta:hover { transform: translateY(-1px); filter: brightness(1.05); }
+      .cta:active { transform: translateY(0); }
+      .badge { display: inline-block; background: rgba(16, 185, 129, 0.18); color: var(--muted); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 12px; margin-bottom: 10px; }
+
+      .hero-card { background: linear-gradient(180deg, var(--card), var(--bg-darker-green)); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); }
+
+      .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+      .card { background: linear-gradient(180deg, var(--card), var(--bg-darker-green)); border: 1px solid var(--border); border-radius: 16px; padding: 18px; transition: transform 120ms ease, background 200ms ease, box-shadow 200ms ease; }
+      .card:hover { transform: translateY(-2px); background: var(--card-hover); box-shadow: var(--shadow); }
+      .card h3 { margin: 0 0 8px; font-size: 18px; }
+      .card p { margin: 0; color: var(--text-secondary); font-size: 14px; }
+      .card ul { margin: 10px 0 0; padding-left: 18px; color: var(--text-secondary); }
+
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .chip { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--chip); color: var(--muted); font-size: 12px; }
+
+      .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+      .stat { text-align: center; padding: 14px 10px; border-radius: 14px; border: 1px solid var(--border); background: rgba(4, 48, 29, 0.5); }
+      .stat strong { font-size: 24px; color: var(--accent-2); display: block; }
+      .stat span { color: var(--text-secondary); font-size: 12px; }
+
+      .timeline { position: relative; padding-left: 22px; }
+      .timeline:before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent-2), transparent); opacity: 0.6; }
+      .tl-item { position: relative; margin: 14px 0; padding-left: 8px; }
+      .tl-item:before { content: ""; position: absolute; left: -2px; top: 6px; width: 10px; height: 10px; border-radius: 999px; background: var(--accent-green); box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25); }
+      .pill { display: inline-block; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border); background: rgba(16, 185, 129, 0.14); color: var(--muted); font-size: 12px; }
+
+      .lookbook { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+      .lb { height: 140px; border-radius: 12px; border: 1px solid var(--border); background: linear-gradient(135deg, #0a5a36, #063822); display: grid; place-items: center; color: var(--muted); font-size: 12px; }
+
+      .feature-list { display: grid; gap: 10px; }
+      .feature { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+      .tick { width: 22px; height: 22px; border-radius: 6px; background: rgba(34, 197, 94, 0.18); border: 1px solid var(--border); display: grid; place-items: center; color: var(--accent-3); font-size: 14px; }
+
+      .price-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      .price .price-tag { font-size: 28px; font-weight: 800; color: var(--accent-2); }
+      .price small { color: var(--text-secondary); }
+
+      .faq details { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: rgba(4, 48, 29, 0.5); }
+      .faq details + details { margin-top: 10px; }
+      .faq summary { cursor: pointer; font-weight: 700; }
+      .faq p { margin: 8px 0 0; color: var(--text-secondary); }
+
+      form { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 900px; }
+      label { font-size: 14px; color: var(--muted); }
+      input, textarea, select { width: 100%; padding: 12px 14px; background: rgba(4, 48, 29, 0.6); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); transition: border-color 180ms ease, background 180ms ease; }
+      input::placeholder, textarea::placeholder { color: #b7e7d6; }
+      input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent-green); background: rgba(4, 48, 29, 0.8); }
+      textarea { min-height: 160px; resize: vertical; }
+      .btn-submit { width: fit-content; background: var(--accent-green); color: #06311f; font-weight: 700; border: 0; border-radius: 12px; padding: 12px 18px; box-shadow: var(--shadow); cursor: pointer; transition: transform 120ms ease, filter 120ms ease; }
+      .btn-submit:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+      .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; align-items: start; }
+      .info-card { border: 1px solid var(--border); border-radius: 16px; background: rgba(4, 48, 29, 0.5); padding: 16px; }
+      .info-card h4 { margin: 0 0 6px; }
+      .info-card p { margin: 0 0 8px; color: var(--text-secondary); }
+      .map { width: 100%; height: 220px; border: 1px solid var(--border); border-radius: 12px; background: linear-gradient(135deg, #0a5a36, #063822); display: grid; place-items: center; color: var(--muted); }
+
+      footer { padding: 24px 0 40px; color: var(--text-secondary); border-top: 1px solid var(--border); background: linear-gradient(0deg, rgba(6, 56, 34, 0.8), rgba(6, 56, 34, 0)); }
+
+      @media (max-width: 1200px) { .grid-5 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      @media (max-width: 1020px) {
+        .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .price-grid { grid-template-columns: 1fr 1fr; }
+        .stats { grid-template-columns: 1fr 1fr; }
+        .contact-grid { grid-template-columns: 1fr; }
+        .lookbook { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+      @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 30px; } nav ul { gap: 8px; } nav a { padding: 8px 10px; } .grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } .price-grid { grid-template-columns: 1fr; } .lookbook { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hero h1 { font-size: 36px; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav" role="navigation" aria-label="Main navigation">
+        <div class="brand" aria-label="NexTeen logo">
+          <span class="brand-mark" aria-hidden="true">N</span>
+          <span>NexTeen Fashion</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#home" aria-current="page">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#product">Product</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home" class="container">
+      <!-- HOME -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <span class="badge">Fashion for the next generation</span>
+          <h1 id="hero-title">Selamat datang di NexTeen Fashion</h1>
+          <p>
+            Kami menghadirkan busana modern yang nyaman, fungsional, dan penuh karakter.
+            Terinspirasi gaya urban dan tren global, setiap koleksi dirancang untuk
+            mengekspresikan dirimu—tanpa mengorbankan kenyamanan dan bumi.
+          </p>
+          <a class="cta" href="#product" aria-label="Lihat koleksi NexTeen Fashion">
+            Lihat Koleksi
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="#06311f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div style="height:12px"></div>
+          <div class="chips">
+            <span class="chip">Urban Streetwear</span>
+            <span class="chip">Daily Essentials</span>
+            <span class="chip">Active Line</span>
+            <span class="chip">Sustainable</span>
+            <span class="chip">Limited Drops</span>
+          </div>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <svg viewBox="0 0 300 220" width="100%" height="100%">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#34d399" />
+                <stop offset="100%" stop-color="#10b981" />
+              </linearGradient>
+              <filter id="glow"><feGaussianBlur stdDeviation="6" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+            </defs>
+            <rect x="16" y="20" width="268" height="160" rx="16" fill="url(#g1)" opacity="0.15" />
+            <g filter="url(#glow)">
+              <circle cx="70" cy="74" r="20" fill="#34d399" opacity="0.9" />
+              <circle cx="150" cy="120" r="28" fill="#10b981" opacity="0.9" />
+              <circle cx="226" cy="62" r="16" fill="#059669" opacity="0.9" />
+            </g>
+            <text x="24" y="195" fill="#a7f3d0" font-size="12">NexTeen Fashion • Sustainable & Urban</text>
+          </svg>
+        </div>
+      </section>
+
+      <section aria-label="Home highlights">
+        <div class="stats">
+          <div class="stat"><strong>200K+</strong><span>Pelanggan setia</span></div>
+          <div class="stat"><strong>50+</strong><span>Toko & stockist</span></div>
+          <div class="stat"><strong>85%</strong><span>Bahan ramah lingkungan</span></div>
+          <div class="stat"><strong>12</strong><span>Koleksi per tahun</span></div>
+        </div>
+        <div style="height:16px"></div>
+        <div class="grid">
+          <div class="card">
+            <h3>Testimoni</h3>
+            <p>"Kualitas kainnya premium dan nyaman dipakai seharian." — Rani, Jakarta</p>
+          </div>
+          <div class="card">
+            <h3>Perawatan</h3>
+            <p>Cuci dingin, jemur teduh, dan setrika suhu rendah untuk daya tahan maksimal.</p>
+          </div>
+          <div class="card">
+            <h3>Style Tips</h3>
+            <p>Padukan basic tee dengan overshirt dan celana relaxed untuk look kasual rapi.</p>
+          </div>
+        </div>
+        <div style="height:16px"></div>
+        <div class="lookbook">
+          <div class="lb">Look 01</div>
+          <div class="lb">Look 02</div>
+          <div class="lb">Look 03</div>
+          <div class="lb">Look 04</div>
+          <div class="lb">Look 05</div>
+          <div class="lb">Look 06</div>
+          <div class="lb">Look 07</div>
+          <div class="lb">Look 08</div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" aria-labelledby="about-title">
+        <h2 id="about-title">About</h2>
+        <p class="lead">
+          NexTeen Fashion adalah label fashion yang berfokus pada desain minimal, kualitas
+          material, dan keberlanjutan. Kami percaya pakaian adalah medium ekspresi dan
+          kepercayaan diri, bukan sekadar tren yang cepat berlalu.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Filosofi Desain</h3>
+            <p>Clean silhouette, palet warna bumi, detail fungsional yang relevan.</p>
+            <ul>
+              <li>Cut yang proporsional di berbagai bentuk tubuh</li>
+              <li>Finishing rapi dan jahitan kuat</li>
+              <li>Versatile untuk kerja hingga hangout</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Keberlanjutan</h3>
+            <p>Kami memilih pemasok bersertifikasi dan proses produksi yang etis.</p>
+            <ul>
+              <li>Kapas organik & TENCEL</li>
+              <li>Limited waste pattern cutting</li>
+              <li>Kemasan dapat didaur ulang</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Kualitas</h3>
+            <p>Setiap batch melalui quality control berlapis untuk konsistensi produk.</p>
+            <ul>
+              <li>Uji ketahanan warna</li>
+              <li>Uji kekuatan jahitan</li>
+              <li>Standar kenyamanan kulit</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+        <div class="grid-2 grid">
+          <div class="card">
+            <h3>Proses Produksi</h3>
+            <p>Dari riset bahan, sampling, hingga produksi massal dengan audit etis.</p>
+            <ul>
+              <li>R&D material ramah lingkungan</li>
+              <li>Sampling cepat dan iteratif</li>
+              <li>Audit pabrik dan keselamatan kerja</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Penghargaan & Sertifikasi</h3>
+            <p>Pengakuan atas komitmen kualitas dan sustainability.</p>
+            <ul>
+              <li>Best Emerging Fashion Label (2023)</li>
+              <li>ISO 9001: Quality Management</li>
+              <li>Global Organic Textile Standard</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+        <div class="card">
+          <h3>Perjalanan Brand</h3>
+          <div class="timeline">
+            <div class="tl-item"><span class="pill">2020</span><div>Soft launch essentials via kanal online.</div></div>
+            <div class="tl-item"><span class="pill">2022</span><div>Kolaborasi kapsul dengan seniman lokal; pop-up store pertama.</div></div>
+            <div class="tl-item"><span class="pill">2024</span><div>85% material ramah lingkungan di seluruh koleksi.</div></div>
+            <div class="tl-item"><span class="pill">2025</span><div>Ekspansi regional dan program trade‑in pakaian lama.</div></div>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+        <div class="team">
+          <div class="card"><div style="display:flex; gap:12px; align-items:center;"><div class="avatar">AL</div><div><strong>Alina L.</strong><div style="color:var(--text-secondary); font-size:13px;">Creative Director</div></div></div><p style="margin-top:10px;">Mengawal bahasa visual brand dan arah koleksi.</p></div>
+          <div class="card"><div style="display:flex; gap:12px; align-items:center;"><div class="avatar">RF</div><div><strong>Rafi F.</strong><div style="color:var(--text-secondary); font-size:13px;">Head of Production</div></div></div><p style="margin-top:10px;">Menjaga kualitas bahan dan efisiensi proses.</p></div>
+          <div class="card"><div style="display:flex; gap:12px; align-items:center;"><div class="avatar">NS</div><div><strong>Nisa S.</strong><div style="color:var(--text-secondary); font-size:13px;">Sustainability Lead</div></div></div><p style="margin-top:10px;">Mengembangkan inisiatif ramah lingkungan.</p></div>
+        </div>
+      </section>
+
+      <!-- PRODUCT -->
+      <section id="product" aria-labelledby="product-title">
+        <h2 id="product-title">Product</h2>
+        <p class="lead">Koleksi fashion NexTeen untuk gaya harian dan momen spesial.</p>
+
+        <div class="grid">
+          <article class="card" aria-labelledby="p1-title">
+            <h3 id="p1-title">Urban Streetwear</h3>
+            <p>Hoodie, oversize tee, cargo pants dengan aksen utilitarian.</p>
+            <ul>
+              <li>Kain medium‑weight, breathable</li>
+              <li>Warna netral dan earth tone</li>
+              <li>Detail saku fungsional</li>
+            </ul>
+          </article>
+          <article class="card" aria-labelledby="p2-title">
+            <h3 id="p2-title">Daily Essentials</h3>
+            <p>Kaos basic, chinos, dan kemeja oxford untuk tampilan rapi kasual.</p>
+            <ul>
+              <li>Silhouette regular & relaxed</li>
+              <li>Kain lembut dan mudah dirawat</li>
+              <li>Mix & match tanpa ribet</li>
+            </ul>
+          </article>
+          <article class="card" aria-labelledby="p3-title">
+            <h3 id="p3-title">Active Line</h3>
+            <p>Outer ringan, jogger stretch, dan top teknis untuk mobilitas.</p>
+            <ul>
+              <li>Quick‑dry dan anti‑odor</li>
+              <li>UPF protection</li>
+              <li>Ventilasi strategis</li>
+            </ul>
+          </article>
+        </div>
+
+        <div style="height:16px"></div>
+        <div class="grid-2 grid">
+          <div class="card">
+            <h3>Fitur Produk</h3>
+            <div class="feature-list">
+              <div class="feature"><span class="tick">✓</span><div><strong>Panduan Ukuran</strong><div style="color:var(--text-secondary);">Size chart akurat dan tips pengukuran.</div></div></div>
+              <div class="feature"><span class="tick">✓</span><div><strong>Limited Drops</strong><div style="color:var(--text-secondary);">Rilisan terbatas untuk kolektor.</div></div></div>
+              <div class="feature"><span class="tick">✓</span><div><strong>Care Guide</strong><div style="color:var(--text-secondary);">Instruksi perawatan untuk umur pakai panjang.</div></div></div>
+            </div>
+          </div>
+          <div class="card price">
+            <h3>Membership</h3>
+            <div class="price-grid">
+              <div class="info-card"><div class="price-tag">Basic</div><small>Gratis</small><ul><li>Akses lookbook</li><li>Early news</li><li>Voucher bulanan</li></ul></div>
+              <div class="info-card"><div class="price-tag">Plus</div><small>Rp49K/bln</small><ul><li>Early access drops</li><li>Diskon member</li><li>Prioritas customer care</li></ul></div>
+              <div class="info-card"><div class="price-tag">VIP</div><small>Undangan</small><ul><li>Kolaborasi eksklusif</li><li>Styling session</li><li>Garansi perbaikan kecil</li></ul></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+        <div class="grid">
+          <div class="card"><h3>Editorial</h3><p>Musim ini menonjolkan layering ringan dan tekstur natural yang elegan.</p></div>
+          <div class="card"><h3>Kolaborasi</h3><p>Kapsul bersama ilustrator lokal: grafis eksklusif dan kemasan kolektor.</p></div>
+          <div class="card"><h3>Roadmap</h3><p>Q4: Denim organik dan sneakers low‑top dengan material daur ulang.</p></div>
+        </div>
+
+        <div style="height:16px"></div>
+        <div class="card">
+          <h3>Panduan Ukuran Rinci</h3>
+          <div class="grid-5 grid">
+            <div class="info-card"><strong>XS</strong><p>Dada 84–88 cm</p><p>Panjang 64–66 cm</p></div>
+            <div class="info-card"><strong>S</strong><p>Dada 88–92 cm</p><p>Panjang 66–68 cm</p></div>
+            <div class="info-card"><strong>M</strong><p>Dada 92–98 cm</p><p>Panjang 68–70 cm</p></div>
+            <div class="info-card"><strong>L</strong><p>Dada 98–104 cm</p><p>Panjang 70–72 cm</p></div>
+            <div class="info-card"><strong>XL</strong><p>Dada 104–110 cm</p><p>Panjang 72–74 cm</p></div>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+        <div class="grid-2 grid">
+          <div class="card">
+            <h3>Petunjuk Perawatan</h3>
+            <ul>
+              <li>Cuci terbalik untuk menjaga warna</li>
+              <li>Gunakan deterjen lembut</li>
+              <li>Hindari pemutih dan pengering panas</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Komposisi Bahan</h3>
+            <ul>
+              <li>Katun organik 100% (Essentials)</li>
+              <li>Campuran TENCEL/katun (Shirts)</li>
+              <li>Polyester daur ulang (Active)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact Us</h2>
+        <p class="lead">Punya pertanyaan, ingin bermitra, atau kerja sama editorial? Hubungi kami.</p>
+
+        <div class="contact-grid">
+          <form onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda telah terkirim.');" aria-label="Form kontak NexTeen Fashion">
+            <div>
+              <label for="name">Nama</label><br />
+              <input id="name" name="name" type="text" placeholder="Nama lengkap" required />
+            </div>
+            <div>
+              <label for="email">Email</label><br />
+              <input id="email" name="email" type="email" placeholder="email@contoh.com" required />
+            </div>
+            <div>
+              <label for="subject">Subjek</label><br />
+              <input id="subject" name="subject" type="text" placeholder="Topik pesan" />
+            </div>
+            <div>
+              <label for="category">Kategori</label><br />
+              <select id="category" name="category">
+                <option>Order & Pengiriman</option>
+                <option>Kerja Sama</option>
+                <option>Media & Press</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+            <div>
+              <label for="message">Pesan</label><br />
+              <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Kirim</button>
+          </form>
+
+          <div class="info-card">
+            <h4>Informasi Kontak</h4>
+            <p><strong>Showroom</strong><br/>Jl. Hijau No. 10, Jakarta</p>
+            <p><strong>Telepon</strong><br/>+62 21 555 1234</p>
+            <p><strong>Email</strong><br/>support@nexteenfashion.co</p>
+            <div class="map">Map Placeholder</div>
+            <div style="height:10px"></div>
+            <div class="faq">
+              <details>
+                <summary>Bagaimana kebijakan pengembalian?</summary>
+                <p>Retur dalam 14 hari dengan kondisi tag utuh dan belum dipakai.</p>
+              </details>
+              <details>
+                <summary>Apakah tersedia gift wrapping?</summary>
+                <p>Ya, tersedia opsi bungkus kado ramah lingkungan.</p>
+              </details>
+              <details>
+                <summary>Berapa lama pengiriman?</summary>
+                <p>1–3 hari Jabodetabek, 3–6 hari luar kota.</p>
+              </details>
+              <details>
+                <summary>Jam operasional customer care?</summary>
+                <p>Senin–Jumat 09.00–18.00 WIB, Sabtu 10.00–16.00 WIB.</p>
+              </details>
+            </div>
+            <div style="height:10px"></div>
+            <h4>Ikuti Kami</h4>
+            <div class="chips">
+              <span class="chip">Instagram</span>
+              <span class="chip">TikTok</span>
+              <span class="chip">YouTube</span>
+              <span class="chip">Pinterest</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <small>© <span id="y"></span> NexTeen Fashion. All rights reserved.</small>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('y').textContent = new Date().getFullYear();
+
+      const sections = ['home', 'about', 'product', 'contact'];
+      const navLinks = new Map(
+        sections.map((id) => [id, document.querySelector(`nav a[href="#${id}"]`)]),
+      );
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const link = navLinks.get(entry.target.id);
+            if (!link) return;
+            if (entry.isIntersecting) {
+              link.style.background = 'rgba(34, 197, 94, 0.18)';
+              link.style.color = '#b7f7db';
+            } else {
+              link.style.background = '';
+              link.style.color = '';
+            }
+          });
+        },
+        { threshold: 0.55 },
+      );
+
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
